@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery weather app</title>
+</head>
+<body>
+    <div id="weather-data">
+     <div id="desc"></div>
+     <div id="temp"></div>
+    </div>
+
+    <div>
+        <form id="city-form" action="path">
+            <div>
+                <input type="text" id="city-name">
+            </div>
+            <div><input type="submit" value="SUBMIT"></div>
+
+
+
+
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+    // $(document).ready(function(){
+    //     console.log("Hello World!");
+    // });
+    $("#city-form").submit(function(event){
+        event.preventDefault();
+
+        let cityName = $("#city-name").val();
+        getWeather(cityName);
+
+    });
+
+    function getWeather (city) {
+  $.get("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=8a0e2e03c568b9c9437a03d809a0e7b0", function(data){
+        console.log(data);
+        $("#desc").html(data.weather[0].description);
+        $("#temp").html(data.main.temp);
+    })
+
+    }
+  
+
+    // https://api.openweathermap.org/data/2.5/weather?q={city name}&appid=8a0e2e03c568b9c9437a03d809a0e7b0
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
